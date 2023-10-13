@@ -24,8 +24,8 @@ export default class BlogController {
   }
 
   static async createBlog(req: Request, res: Response) {
-    try {
-      const newBlog = Blog.create(req.body)
+    try {      
+      const newBlog = await Blog.create(req.body, req.files)
       res.status(201).json(newBlog)
     } catch (error) {
       errorHandler(res)
@@ -35,7 +35,7 @@ export default class BlogController {
   static async updateBlog(req: Request, res: Response) {
     try {
       const { id } = req.params
-      const updatedBlog = Blog.update(id, req.body)
+      const updatedBlog = await Blog.update(id, req.body, req.files)
       updatedBlog
         ? res.json(updatedBlog)
         : errorHandler(res, 404, 'Blog not found!')
