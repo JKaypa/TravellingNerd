@@ -17,7 +17,7 @@ export default class Blog {
     if(pic && !(pic.image instanceof Array)){
       const image: UploadedFile = pic.image
       const path = './src/pictures/' + image.name
-      image.mv(path) 
+      await image.mv(path) 
       data.image = config.picUrl + image.name
       return await BlogModel.create(data)
     }
