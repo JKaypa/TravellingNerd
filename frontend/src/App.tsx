@@ -7,14 +7,14 @@ import BlogDetail from './components/BlogDetail'
 
 function App() {
   return (
-    <>
+    <div className='h-screen flex flex-col justify-between'>
       <Header />
       <Routes>
         <Route path="/" element={<BlogList />} />
         <Route path="/:id" element={<BlogDetail />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   )
 }
 
