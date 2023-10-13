@@ -9,6 +9,7 @@ class BlogClass {
   image!: string
 
   @prop({required: true})
+  author!: string
 
   @prop({required: true})
   description!: string
@@ -17,6 +18,6 @@ class BlogClass {
   content!: string
 }
 
-const Blog = getModelForClass(BlogClass)
+const BlogModel = getModelForClass(BlogClass)
 
-export default Blog
+export default BlogModel
