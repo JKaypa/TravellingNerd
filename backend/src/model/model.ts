@@ -1,4 +1,4 @@
-import fileUpload from 'express-fileupload'
+import fileUpload, { UploadedFile } from 'express-fileupload'
 import { blog, partialBlog } from '../types'
 import BlogModel from './schemas/Blog'
 import { config } from '../config/config'
@@ -15,10 +15,10 @@ export default class Blog {
 
   static async create(data: blog, pic: fileUpload.FileArray | null | undefined) {
     if(pic && !(pic.image instanceof Array)){
-      
-      const path = './src/pictures/' + pic.image.name
-      pic.image.mv(path)
-      data.image = config.picUrl + pic.image.name
+      const image: UploadedFile = pic.image
+      const path = './src/pictures/' + image.name
+      image.mv(path) 
+      data.image = config.picUrl + image.name
       return await BlogModel.create(data)
     }
     
