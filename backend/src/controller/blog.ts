@@ -24,11 +24,13 @@ export default class BlogController {
   }
 
   static async createBlog(req: Request, res: Response) {
-    try {      
-      const newBlog = await Blog.create(req.body, req.files)
-      res.status(201).json(newBlog)
+    try {
+      if(req.files && !(req.files.image instanceof Array)) {
+        const newBlog = await Blog.create(req.body, req.files.image)
+        res.status(201).json(newBlog)
+      }     
     } catch (error) {
-      errorHandler(res)
+      res.status(500).json({error: `algun error ${error}`})
     }
   }
 
