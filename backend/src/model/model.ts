@@ -18,7 +18,7 @@ export default class Blog {
     try {
       await pic.mv(path)
     } catch (error) {
-      console.error('image.mv error', error)
+      console.error('image upload error', error)
     }
     data.image = config.picUrl + pic.name
     console.log(data)
