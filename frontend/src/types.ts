@@ -7,6 +7,3 @@ export interface Blog {
   content: string
 }
 
-export interface BlogListResponse {
-  data: Blog[]
-}

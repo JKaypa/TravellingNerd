@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import BlogList from './components/BlogList'
 import BlogDetail from './components/BlogDetail'
 import PostForm from './pages/PostForm'
+import EditForm from './pages/EditForm'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<BlogList />} />
         <Route path="/:id" element={<BlogDetail />} />
         <Route path="/write" element={<PostForm />} />
+        <Route path="/edit/:id" element={<EditForm />} />
       </Routes>
       <Footer />
     </div>

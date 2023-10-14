@@ -1,17 +1,20 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-// import { blog } from "../types"
+
+import { url } from "../services/config"
+import { Blog } from "../types"
 
 export default function Header() {
 
   const{ id }= useParams()
-  const [image, setImage ] = useState(null)
+  const [image, setImage ] = useState('')
   useEffect(() => {
     const blog = async () => {
-      const {data} = await axios(`http://localhost:3001/api/blogs/${id}`)
-      setImage(data.image)
-      
+      if(id){
+        const {data} = await axios<Blog>(`${url}/${id}`)
+        setImage(data._id)
+      }
     }
     blog()
   }, [id])
