@@ -2,13 +2,13 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css'
 import { usePostForm } from "../hooks/PostForm";
 import { useNavigate } from "react-router-dom";
-import { writePost } from "../services/writePost";
+import { writePost } from "../services/apiService";
 
 export default function PostForm() {
 
   const form = usePostForm()
   const navigate = useNavigate()
-
+  
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
