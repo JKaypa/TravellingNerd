@@ -2,6 +2,7 @@ import fileUpload, { UploadedFile } from 'express-fileupload'
 import { blog, partialBlog } from '../types'
 import BlogModel from './schemas/Blog'
 import { config } from '../config/config'
+import { cloudinaryUpload } from '../config/cloudinaryConfig'
 
 export default class Blog {
   static async getAll() {
@@ -13,21 +14,14 @@ export default class Blog {
     return blog ? blog : false
   }
 
-  static async create(data: blog, pic: UploadedFile) {
-    const path = './src/pictures/' + pic.name
-    try {
-      await pic.mv(path)
-    } catch (error) {
-      console.error('image upload error', error)
-    }
-    data.image = config.picUrl + pic.name
-    console.log(data)
-    try {
+  static async create(data: blog, file: fileUpload.FileArray | null | undefined) {
+    
+      const pic = file?.image as UploadedFile
+      const picUrl = await cloudinaryUpload(pic.tempFilePath)
+      data.image = picUrl.secure_url
       const newModel = await BlogModel.create(data)
       return newModel
-    } catch (error) {
-      console.error('create error', error)
-    }
+    
   }
 
   static async update(

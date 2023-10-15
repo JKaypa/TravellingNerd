@@ -4,45 +4,25 @@ import errorHandler from '../utils/error'
 
 export default class BlogController {
   static async getAllBlogs(_req: Request, res: Response) {
-    try {
-      res.json(await Blog.getAll())
-    } catch (error) {
-      errorHandler(res)
-    }
+    res.json(await Blog.getAll())
   }
 
   static async getBlogById(req: Request, res: Response) {
-    try {
-      const { id } = req.params
-      const blog = await Blog.getById(id)
-      blog 
-        ? res.json(blog) 
-        : errorHandler(res, 404, 'Blog not found!')
-    } catch (error) {
-      errorHandler(res)
-    }
+    const { id } = req.params
+    const blog = await Blog.getById(id)
+    blog ? res.json(blog) : errorHandler(res, 404, 'Blog not found!')
   }
 
   static async createBlog(req: Request, res: Response) {
-    try {
-      if(req.files && !(req.files.image instanceof Array)) {
-        const newBlog = await Blog.create(req.body, req.files.image)
-        res.status(201).json(newBlog)
-      }     
-    } catch (error) {
-      res.status(500).json({error: `algun error ${error}`})
-    }
+    const newBlog = await Blog.create(req.body, req.files)
+    res.status(201).json(newBlog)
   }
 
   static async updateBlog(req: Request, res: Response) {
-    try {
-      const { id } = req.params
-      const updatedBlog = await Blog.update(id, req.body, req.files)
-      updatedBlog
-        ? res.json(updatedBlog)
-        : errorHandler(res, 404, 'Blog not found!')
-    } catch (error) {
-      errorHandler(res)
-    }
+    const { id } = req.params
+    const updatedBlog = await Blog.update(id, req.body, req.files)
+    updatedBlog
+      ? res.json(updatedBlog)
+      : errorHandler(res, 404, 'Blog not found!')
   }
 }
