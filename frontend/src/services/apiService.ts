@@ -13,3 +13,12 @@ export const writePost = async (post: FormData) => {
     alert('Something failed')
   }
 }
+
+export const getPosts = async () => {  
+  try {
+    const {data} = await axios<Blog[]>(url)
+    return data
+  } catch (error) {
+    alert('Something failed')
+  }
+}
