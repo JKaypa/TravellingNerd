@@ -33,7 +33,7 @@ export default function PostForm() {
 
   
   return (
-    <form className="p-3 min-h-[400px] flex flex-col justify-around gap-5" onSubmit={submit}>
+    <form className="p-3 min-h-[400px] flex flex-col justify-around gap-5 md:w-[780px] self-center" onSubmit={submit}>
       <input type="text" placeholder="Title" value={form.title} onChange={form.setTitl} className="px-1 border border-zinc-400 rounded-md" />
 
       <textarea placeholder="Description" rows={4} value={form.description} onChange={form.setDesc} className="px-1 border border-zinc-400 rounded-md"/>
