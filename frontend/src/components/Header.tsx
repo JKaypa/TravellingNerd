@@ -1,19 +1,46 @@
 
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { NavLink, useLocation } from "react-router-dom"
 import {HiMenu} from 'react-icons/hi'
+import axios from "axios"
+// import { url } from "../services/config"
+import { Post } from "../types"
+
+
 
 
 export default function Header() {
-
   
+  const location = useLocation()
+  const [image, setImage] = useState('')
   const [toogle, setToogle] = useState(false)
 
+  const id = location.pathname.split('/').pop()
+  console.log(id);
+  
+  useEffect(() => {
+    const getImage =async () => {
+      if(id){
+        console.log(id);
+        
+        const {data} = await axios<Post>('https://travellingnerd.onrender.com/blogs/' + id)
+        setImage(data.image)
+  
+      }
+    }
+    getImage()
+    return () => {
+      setImage('')
+    }
+
+  }, [id])
+
+  console.log(image);
   
   toogle ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
 
   return (
-    <header className={`${'bg-zinc-900 flex justify-center items-center h-44 relative'}`}>
+    <header style={{backgroundImage: toogle ? '':`URL(${image})`}} className={`${image && !toogle? 'h-96 bg-cover bg-center' :'bg-zinc-900 flex justify-center items-center h-44 relative'}`}>
       <HiMenu onClick={() => setToogle(!toogle)} className='text-white absolute top-4 right-4 text-xl cursor-pointer md:hidden' />
       <h1 className="text-white text-xl font-thin">Travelling Nerd</h1>       
       <nav className={`text-sm text-white flex flex-col items-center gap-6 fixed top-44 transform ${toogle ? 'translate-x-0 overflow-y-hidden' : '-translate-x-full'} transition-transform z-10 bg-zinc-900 w-full h-screen md:hidden`}>

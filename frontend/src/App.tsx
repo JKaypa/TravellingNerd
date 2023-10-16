@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import BlogList from './pages/BlogList'
-import BlogDetail from './components/BlogDetail'
+import BlogDetail from './pages/BlogDetail'
 import PostForm from './pages/PostForm'
 import EditForm from './pages/EditForm'
 
@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<BlogList />} />
-        <Route path="/:id" element={<BlogDetail />} />
+        <Route path="detail/:id" element={<BlogDetail />} />
         <Route path="/write" element={<PostForm />} />
         <Route path="/edit/:id" element={<EditForm />} />
       </Routes>
