@@ -4,7 +4,7 @@ export default function Home({id, image, title, desc}: {id:string, image: string
   return (
     <section key={id} className="flex flex-col min-w-min max-w-md">
       <div className="">
-        <img src={image} className="" />
+        <img src={image} className="w-full" />
       </div>
       <div>
         <div>
