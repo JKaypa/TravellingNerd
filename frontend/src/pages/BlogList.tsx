@@ -18,7 +18,7 @@ export default function BlogList() {
   console.log(postList)
 
   return (
-    <main className="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-5 items-center bg-slate-400 p-10">
+    <main className="p-2 grid grid-cols-1 justify-items-center gap-8 md:py-2">
       {postList.map((post) => {
         return (
          <Blog key={post._id} id={post._id} image={post.image} title={post.title} desc={post.description}/>
