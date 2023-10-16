@@ -21,11 +21,8 @@ export default function Header() {
   useEffect(() => {
     const getImage =async () => {
       if(id){
-        console.log(id);
-        
         const {data} = await axios<Post>('https://travellingnerd.onrender.com/blogs/' + id)
-        setImage(data.image)
-  
+        setImage(data.image)  
       }
     }
     getImage()
