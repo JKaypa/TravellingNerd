@@ -1,40 +1,30 @@
 import { useEffect, useState } from 'react'
 import { getPosts } from '../services/apiService'
-import { Blog } from '../types'
+import Blog from '../components/Blog'
+import { Post } from '../types'
+
 
 export default function BlogList() {
-  const [blogList, setBlogList] = useState<Blog[]>([])
+  const [postList, setPostList] = useState<Post[]>([])
 
   useEffect(() => {
     const get = async () => {
-      const blogs = (await getPosts()) as Blog[]
-      setBlogList(blogs)
+      const posts = await getPosts()
+      posts && setPostList(posts)
     }
     get()
   }, [])
 
-  console.log(blogList)
+  console.log(postList)
 
   return (
-    <>
-      {blogList.map((blog) => {
+    <main className="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-5 items-center bg-slate-400 p-10">
+      {postList.map((post) => {
         return (
-          <main className='flex flex-col items-center p-4'>
-            <section key={blog._id} className='flex flex-col gap-7 min-w-min max-w-md'>
-              <div>
-                <img src={blog.image} className='w-90 '/>
-              </div>
-              <div>
-                <div>
-                  <h2 className='text-sm text-zinc-900 font-bold'>{blog.title}</h2>
-                  <p className='text-xs text-zinc-900'>{blog.description}</p>
-                </div>
-                <span className='bg-zinc-200 text-xs underline p-1'>Read more</span>
-              </div>
-            </section>
-          </main>
+         <Blog key={post._id} id={post._id} image={post.image} title={post.title} desc={post.description}/>
         )
       })}
-    </>
+    </main>
+    
   )
 }
