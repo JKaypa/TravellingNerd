@@ -32,6 +32,6 @@ export default function BlogDetail() {
     <p dangerouslySetInnerHTML={{__html: post? post.content : ''}} className="text-xs md:text-base"/>
     <Link to={`/edit/${post?._id}`} className="bg-zinc-500 p-3 text-white flex items-center justify-center gap-2">Edit<AiFillEdit/></Link>
     </article>)
-    : <img src="Eclipse" alt="" className="text-black bg-black"/>
+    : <img src="/Eclipse-1s-200px.svg" alt="" className="text-black w-20 m-auto"/>
   )
 }
