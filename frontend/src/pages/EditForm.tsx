@@ -44,7 +44,7 @@ export default function EditForm() {
     formData.append('content', content)
     try {
       const {data} = await axios.put<Post>(url + id, formData)
-      navigate(`/${data._id}`)
+      navigate(`/detail/${data._id}`)
     } catch (error) {
       console.error('Article not edited');
     }
@@ -69,7 +69,7 @@ export default function EditForm() {
 
       <label htmlFor="file" className="p-1 bg-zinc-900 rounded-md text-white">{conditionalLabel('Image')}</label>
 
-      <ReactQuill theme="snow" value={content} onChange={(value) => setTitle(value)} />
+      <ReactQuill theme="snow" value={content} onChange={(value) => setContent(value)} />
 
       <button type="submit" className="bg-zinc-900 p-4 rounded-md text-white font-medium">Edit</button>
     </form>
