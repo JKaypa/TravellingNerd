@@ -15,7 +15,8 @@ export default function Header() {
   const [image, setImage] = useState('')
   const [toogle, setToogle] = useState(false)
 
-  const id = location.pathname.split('/').pop()
+  const path = location.pathname
+  const id = path.split('/').pop()
   console.log(id);
   
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function Header() {
       setImage('')
     }
 
-  }, [id])
+  }, [path, id])
 
   console.log(image);
   
