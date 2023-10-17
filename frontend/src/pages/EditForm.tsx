@@ -59,7 +59,7 @@ export default function EditForm() {
   console.log(image);
   
   return (
-    <form className="p-3 min-h-[400px] flex flex-col justify-around gap-5 md:w-[780px] self-center" onSubmit={submit}>
+    content ? (<form className="p-3 min-h-[400px] flex flex-col justify-around gap-5 md:w-[780px] self-center" onSubmit={submit}>
       <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} className="px-1 border border-zinc-400 rounded-md" />
 
       <textarea placeholder="Description" rows={4} value={description} onChange={(e) => setDescription(e.target.value)} className="px-1 border border-zinc-400 rounded-md"/>
@@ -73,6 +73,7 @@ export default function EditForm() {
       <ReactQuill theme="snow" value={content} onChange={(value) => setContent(value)} />
 
       <button type="submit" className="bg-zinc-900 p-4 rounded-md text-white font-medium">Edit</button>
-    </form>
+    </form>)
+    : <img src="/Eclipse-1s-200px.svg" alt="" className="text-black w-20 m-auto"/>
   )
 }
