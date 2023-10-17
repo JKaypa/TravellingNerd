@@ -1,7 +1,7 @@
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css'
 import axios from "axios";
-import { Blog } from "../types";
+import { Post } from "../types";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { url } from "../services/config";
@@ -13,17 +13,16 @@ export default function EditForm() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [author, setAuthor] = useState('')
-  const [image, setImage] = useState<string | File>('')
+  const [image, setImage] = useState<string | File >('')
   const [content, setContent] = useState('')
   
   
   useEffect(() => {
     const getBlog = async () => {
-      const {data} = await axios<Blog>(`${url}/${id}`)
+      const {data} = await axios<Post>(`${url}/${id}`)
       setTitle(data.title)
       setAuthor(data.author)
       setDescription(data.description)
-      setImage(data.title)
       setContent(data.content)
     }
 
@@ -44,7 +43,7 @@ export default function EditForm() {
     formData.append('image', image)
     formData.append('content', content)
     try {
-      const {data} = await axios.put<Blog>(`${url}/${id}`, formData)
+      const {data} = await axios.put<Post>(url + id, formData)
       navigate(`/${data._id}`)
     } catch (error) {
       console.error('Article not edited');
@@ -52,13 +51,14 @@ export default function EditForm() {
     
   }
 
-  const imgName = typeof image === 'string' && image.split('/')[-1]
+  
   const conditionalLabel = (label: string | false) => image instanceof File ? image.name : label
 
 
+  console.log(image);
   
   return (
-    <form className="p-3 min-h-[400px] flex flex-col justify-around gap-5" onSubmit={submit}>
+    <form className="p-3 min-h-[400px] flex flex-col justify-around gap-5 md:w-[780px] self-center" onSubmit={submit}>
       <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} className="px-1 border border-zinc-400 rounded-md" />
 
       <textarea placeholder="Description" rows={4} value={description} onChange={(e) => setDescription(e.target.value)} className="px-1 border border-zinc-400 rounded-md"/>
@@ -67,7 +67,7 @@ export default function EditForm() {
 
       <input type="file" id="file" onChange={(e) => setImage(e.target.files ? e.target.files[0] : '')} className="hidden"/>
 
-      <label htmlFor="file" className="p-1 bg-zinc-900 rounded-md text-white">{conditionalLabel(imgName)}</label>
+      <label htmlFor="file" className="p-1 bg-zinc-900 rounded-md text-white">{conditionalLabel('Image')}</label>
 
       <ReactQuill theme="snow" value={content} onChange={(value) => setTitle(value)} />
 
