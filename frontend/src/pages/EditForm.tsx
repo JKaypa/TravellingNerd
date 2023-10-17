@@ -19,7 +19,7 @@ export default function EditForm() {
   
   useEffect(() => {
     const getBlog = async () => {
-      const {data} = await axios<Post>(`${url}/detail/${id}`)
+      const {data} = await axios<Post>(`${url}/${id}`)
       setTitle(data.title)
       setAuthor(data.author)
       setDescription(data.description)
