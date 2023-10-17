@@ -44,6 +44,7 @@ export default function EditForm() {
     formData.append('content', content)
     try {
       const {data} = await axios.put<Post>(url + id, formData)
+      alert('Article edited')
       navigate(`/detail/${data._id}`)
     } catch (error) {
       console.error('Article not edited');
