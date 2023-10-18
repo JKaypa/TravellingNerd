@@ -21,7 +21,7 @@ export default function PostForm() {
     formData.append('content', form.content)
     try {
       const id = await writePost(formData)
-      navigate(`/detail/${id}`)
+      id && navigate(`/detail/${id}`)
     } catch (error) {
       console.error('Article not created');
     }
