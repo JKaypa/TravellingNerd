@@ -12,19 +12,17 @@ export default function PostForm() {
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    
+    !form.title && alert('Should have a title')
     const formData = new FormData()
     formData.append('title', form.title)
     formData.append('description', form.description)
     formData.append('author', form.author)
     formData.append('image', form.image)
     formData.append('content', form.content)
-    try {
-      const id = await writePost(formData)
-      id && navigate(`/detail/${id}`)
-    } catch (error) {
-      console.error('Article not created');
-    }
+    
+    const id = await writePost(formData)
+    id && navigate(`/detail/${id}`)
+    
     
   }
 
