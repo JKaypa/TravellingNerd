@@ -12,7 +12,7 @@ export default function PostForm() {
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    !form.title && alert('Should have a title')
+    if(!form.title) return alert('Should have a title')
     const formData = new FormData()
     formData.append('title', form.title)
     formData.append('description', form.description)
