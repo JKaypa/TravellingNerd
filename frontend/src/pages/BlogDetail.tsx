@@ -30,7 +30,7 @@ export default function BlogDetail() {
     <h1 className="text-xl text-zinc-900 font-bold md:text-3xl">{post?.title}</h1>
     <h2 className="text-sm font-semibold md:text-lg">{post?.description}</h2>
     <p dangerouslySetInnerHTML={{__html: post? post.content : ''}} className="text-xs md:text-base"/>
-    <Link to={`/edit/${post?._id}`} className="bg-zinc-900 p-3 text-white flex items-center justify-center gap-2">Edit<AiFillEdit/></Link>
+    <Link to={`/edit/${post?._id}`} className="bg-zinc-900 hover:bg-zinc-800 p-3 text-white flex items-center justify-center gap-2">Edit<AiFillEdit/></Link>
     </article>)
     : <img src="/Eclipse-1s-200px.svg" alt="" className="text-black w-20 m-auto"/>
   )
