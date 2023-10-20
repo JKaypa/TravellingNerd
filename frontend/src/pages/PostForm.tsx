@@ -44,7 +44,7 @@ export default function PostForm() {
 
       <ReactQuill theme="snow" value={form.content} onChange={form.setCntnt} />
 
-      <button type="submit" className="bg-zinc-900 p-4 rounded-md text-white font-medium hover:bg-zinc-700 active:bg-zinc-950">Post</button>
+      <button type="submit" className="bg-zinc-900 p-4 rounded-md text-white font-medium  hover:scale-110 duration-300">Post</button>
     </form>
   )
 }
