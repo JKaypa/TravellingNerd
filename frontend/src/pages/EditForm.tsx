@@ -72,7 +72,7 @@ export default function EditForm() {
 
       <ReactQuill theme="snow" value={content} onChange={(value) => setContent(value)} />
 
-      <button type="submit" className="bg-zinc-900 p-4 rounded-md text-white font-medium">Edit</button>
+      <button type="submit" className="bg-zinc-900 p-4 rounded-md text-white font-medium  hover:scale-110 duration-300">Edit</button>
     </form>)
     : <img src="/Eclipse-1s-200px.svg" alt="" className="text-black w-20 m-auto"/>
   )
