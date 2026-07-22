@@ -8,6 +8,8 @@ import mongoConnection from "./model/mongoConnection";
       console.log(`Database sync and server listening on port ${config.port}!`)
     );
   } catch (error) {
-    console.error("*****Connection failed!*****");
+    if(error instanceof Error) {
+      console.error(error.message);
+    }
   }
 })();

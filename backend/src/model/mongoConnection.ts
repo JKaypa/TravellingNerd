@@ -8,6 +8,6 @@ export default async function mongoConnection() {
     const db = await connect(config.mongoUrl as string)
     console.log(`Success connection to ${db.connection.name} database` )
   } catch (error) {
-    console.error('***connection failed****')
+    throw new Error('***Database connection failed****')
   }
 }
